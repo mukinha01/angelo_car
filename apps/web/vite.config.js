@@ -5,11 +5,12 @@ import react from '@vitejs/plugin-react';
 
 const rootDir = path.dirname(fileURLToPath(import.meta.url));
 
-export default defineConfig({
+export default defineConfig(({ command }) => ({
+	base: command === 'build' ? '/angelo_car/' : '/',
 	plugins: [react()],
 	resolve: {
 		alias: {
 			'@': path.resolve(rootDir, 'src'),
 		},
 	},
-});
+}));

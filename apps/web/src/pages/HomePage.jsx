@@ -30,12 +30,15 @@ import {
   ClipboardCheck,
   Banknote,
   QrCode,
+  ChevronDown,
+  ChevronUp,
 } from 'lucide-react';
 import Reveal from '@/components/Reveal';
 import Seo from '@/components/Seo';
 import { contato, mensagemWhatsApp, whatsappLink } from '@/data/siteConfig';
 
 const marcas = ['Volkswagen', 'Mercedes-Benz', 'BMW', 'Audi'];
+const mediaPath = (fileName) => `${import.meta.env.BASE_URL}media/${fileName}`;
 
 const servicos = [
   { icon: Fuel, t: 'Injeção Eletrônica', d: 'Diagnóstico e correção do sistema de injeção para máxima eficiência.' },
@@ -76,26 +79,34 @@ const depoimentos = [
     texto: 'A melhor oficina da região.',
     autor: 'Feedback real de cliente',
     veiculo: 'Angelo Car Center',
-    imagem: '/media/feedback-cliente.jpeg',
+    imagem: mediaPath('feedback-cliente.jpeg'),
   },
 ];
 
 const galeria = [
-  { src: '/media/oficina-ampla.jpeg', alt: 'Audi e BMW em atendimento dentro da oficina', span: 'md:col-span-2 md:row-span-2' },
-  { src: '/media/elevador-car.jpeg', alt: 'BMW em manutenção no elevador', span: '' },
-  { src: '/media/caminhonete-elevador.jpg', alt: 'Caminhonete e SUV em atendimento no elevador', span: '' },
-  { src: '/media/oficina-carros.jpeg', alt: 'Veículos Audi e BMW em manutenção', span: 'md:col-span-2' },
-  { src: '/media/entrada-angelo-car.jpeg', alt: 'Entrada da Angelo Car Center com veículos em atendimento', span: '' },
+  { src: mediaPath('oficina-ampla.jpeg'), alt: 'Audi e BMW em atendimento dentro da oficina', span: 'md:col-span-2 md:row-span-2' },
+  { src: mediaPath('elevador-car.jpeg'), alt: 'BMW em manutenção no elevador', span: '' },
+  { src: mediaPath('caminhonete-elevador.jpg'), alt: 'Caminhonete e SUV em atendimento no elevador', span: '' },
+  { src: mediaPath('oficina-carros.jpeg'), alt: 'Veículos Audi e BMW em manutenção', span: 'md:col-span-2' },
+  { src: mediaPath('entrada-angelo-car.jpeg'), alt: 'Entrada da Angelo Car Center com veículos em atendimento', span: '' },
+  { src: mediaPath('fachada-angelo-car.jpeg'), alt: 'Fachada da Angelo Car Center durante o dia', span: '' },
+  { src: mediaPath('entrada-loja-noite.jpeg'), alt: 'Entrada da Angelo Car Center iluminada à noite', span: '' },
 ];
 
 const videos = [
-  { src: '/media/video-angelo-car.mp4', title: 'Rotina de atendimento na oficina' },
-  { src: '/media/video2-angelo-car.mp4', title: 'Estrutura e veículos em manutenção' },
-  { src: '/media/audi-a6-troca-de-rolamento-angelo-car.mp4', title: 'Atendimento técnico em Audi A6' },
+  { src: mediaPath('audi-a6-troca-de-rolamento-angelo-car.mp4'), title: 'Atendimento técnico em Audi A6' },
+  { src: mediaPath('audiq8-video.mp4'), title: 'Audi Q8 em atendimento' },
+  { src: mediaPath('range-rover-velar-alinhamento-e-balanceamento.mp4'), title: 'Alinhamento e balanceamento em Range Rover Velar' },
+  { src: mediaPath('audi-a3-limpezaCompleta-descarbonização.mp4'), title: 'Limpeza e descarbonização em Audi A3' },
+  { src: mediaPath('bmw-3201-troca-de-oleo.mp4'), title: 'Troca de óleo em BMW 320i' },
+  { src: mediaPath('video-angelo-car.mp4'), title: 'Rotina de atendimento na oficina' },
+  { src: mediaPath('video2-angelo-car.mp4'), title: 'Estrutura e veículos em manutenção' },
+  { src: mediaPath('video-troca-de-oleo.mp4'), title: 'Troca de óleo e revisão preventiva' },
+  { src: mediaPath('video-troca-oleo.mp4'), title: 'Serviço de troca de óleo' },
 ];
 
-const logoSrc = '/media/angelo-car-logo.png';
-const logoWithNameSrc = '/media/angelo-car-logo-name.png';
+const logoSrc = mediaPath('angelo-car-logo.png');
+const logoWithNameSrc = mediaPath('angelo-car-logo-name.png');
 
 const Btn = ({ href, children, variant = 'solid', className = '', ...rest }) => {
   const base =
@@ -122,6 +133,7 @@ export default function HomePage() {
   const [showLoader, setShowLoader] = React.useState(true);
   const [loaderExiting, setLoaderExiting] = React.useState(false);
   const [playingVideo, setPlayingVideo] = React.useState(null);
+  const [showAllVideos, setShowAllVideos] = React.useState(false);
   const [whatsappOpen, setWhatsappOpen] = React.useState(false);
   const [whatsappMessage, setWhatsappMessage] = React.useState(mensagemWhatsApp);
   const videoRefs = React.useRef([]);
@@ -210,7 +222,7 @@ export default function HomePage() {
       <Seo
         title="Angelo Car Center | Especialistas em Carros Alemães"
         description="Oficina especializada em Volkswagen, Mercedes-Benz, BMW e Audi. Diagnóstico computadorizado, câmbio técnico, freios e suspensão. Garantia de 3 meses em todos os serviços."
-        image="/media/oficina-ampla.jpeg"
+        image={mediaPath('oficina-ampla.jpeg')}
         siteName="Angelo Car Center"
       />
 
@@ -243,7 +255,7 @@ export default function HomePage() {
       {/* HERO */}
       <section id="topo" className="relative flex min-h-[100dvh] items-end overflow-hidden">
         <img
-          src="/media/oficina-ampla.jpeg"
+          src={mediaPath('oficina-ampla.jpeg')}
           alt="Audi e BMW em atendimento dentro da oficina Angelo Car Center"
           className="absolute inset-0 h-full w-full object-cover object-center"
         />
@@ -300,7 +312,7 @@ export default function HomePage() {
           <Reveal>
             <div className="mb-6 flex items-center gap-5">
               <img
-                src="/media/oficina-carros.jpeg"
+                src={mediaPath('oficina-carros.jpeg')}
                 alt="Veículos em atendimento dentro da Angelo Car Center"
                 className="h-24 w-full max-w-sm object-cover object-center"
               />
@@ -406,7 +418,7 @@ export default function HomePage() {
       {/* IMPACTO */}
       <section className="relative min-h-[75vh] overflow-hidden">
         <img
-          src="/media/caminhonete-elevador.jpg"
+              src={mediaPath('caminhonete-elevador.jpg')}
           alt="Veículos em atendimento nos elevadores da Angelo Car Center"
           className="absolute inset-0 h-full w-full object-cover object-center"
         />
@@ -486,10 +498,11 @@ export default function HomePage() {
               Atendimento real, estrutura real, <span className="text-primary">confiança real</span>.
             </h2>
           </Reveal>
-          <div className="mt-12 grid gap-4 md:grid-cols-3">
+          <div className={`relative mt-12 overflow-hidden transition-[max-height] duration-500 ${showAllVideos ? '' : 'max-h-[44rem] md:max-h-[39rem]'}`}>
+            <div className="grid gap-4 md:grid-cols-3">
             {videos.map((video, i) => (
               <Reveal key={video.src} delay={i * 0.08}>
-                <figure className="relative overflow-hidden border border-white/10 bg-black">
+                <figure className={`relative overflow-hidden border border-white/10 bg-black transition-all duration-500 ${i >= 3 && !showAllVideos ? 'blur-[3px] opacity-55' : ''}`}>
                   <video
                     ref={(element) => {
                       videoRefs.current[i] = element;
@@ -537,7 +550,7 @@ export default function HomePage() {
                       type="button"
                       aria-label={`Reproduzir ${video.title}`}
                       onClick={() => videoRefs.current[i]?.play()}
-                      className="absolute left-1/2 top-[42%] z-10 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/50 bg-black/55 text-white shadow-[0_8px_24px_-8px_black] backdrop-blur-sm transition-transform duration-200 hover:scale-105 hover:bg-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-black"
+                      className={`absolute left-1/2 top-[42%] z-10 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/50 bg-black/55 text-white shadow-[0_8px_24px_-8px_black] backdrop-blur-sm transition-transform duration-200 hover:scale-105 hover:bg-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-black ${i >= 3 && !showAllVideos ? 'pointer-events-none' : ''}`}
                     >
                       <span className="ml-1 text-2xl leading-none">▶</span>
                     </button>
@@ -548,7 +561,30 @@ export default function HomePage() {
                 </figure>
               </Reveal>
             ))}
+            </div>
+            {!showAllVideos && (
+              <div className="absolute inset-x-0 bottom-0 flex h-40 items-end justify-center bg-gradient-to-t from-[hsl(0_0%_5%)] via-[hsl(0_0%_5%/0.85)] to-transparent pb-2">
+                <button
+                  type="button"
+                  onClick={() => setShowAllVideos(true)}
+                  className="inline-flex min-h-12 items-center gap-2 rounded-md bg-primary px-6 text-xs font-semibold uppercase tracking-[0.16em] text-primary-foreground shadow-[0_10px_30px_-12px_hsl(0_72%_42%/0.9)] transition-colors hover:bg-[hsl(0_72%_36%)]"
+                >
+                  Ver mais vídeos
+                  <ChevronDown className="h-4 w-4" strokeWidth={1.8} />
+                </button>
+              </div>
+            )}
           </div>
+          {showAllVideos && (
+            <button
+              type="button"
+              onClick={() => setShowAllVideos(false)}
+              className="mt-8 inline-flex min-h-11 items-center gap-2 border border-white/20 px-5 text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground transition-colors hover:border-primary hover:text-foreground"
+            >
+              Mostrar menos
+              <ChevronUp className="h-4 w-4" strokeWidth={1.8} />
+            </button>
+          )}
         </div>
       </section>
 
