@@ -18,11 +18,16 @@ import {
   MapPin,
   Clock,
   Instagram,
+  Music2,
   MessageCircle,
   Quote,
   ArrowUpRight,
   Mail,
   CreditCard,
+  WalletCards,
+  ClipboardCheck,
+  Banknote,
+  QrCode,
 } from 'lucide-react';
 import Reveal from '@/components/Reveal';
 import Seo from '@/components/Seo';
@@ -35,9 +40,10 @@ const servicos = [
   { icon: RefreshCw, t: 'Embreagem', d: 'Troca e regulagem de embreagens com peças de alta qualidade.' },
   { icon: Disc3, t: 'Freio e Suspensão', d: 'Discos, pastilhas e sistemas de suspensão revisados com precisão.' },
   { icon: Wrench, t: 'Mecânica Geral', d: 'Intervenções completas em motores e sistemas mecânicos.' },
-  { icon: Droplets, t: 'Troca de Óleo', d: 'Troca com óleos homologados pelos fabricantes alemães.' },
-  { icon: Settings2, t: 'Câmbio Técnico', d: 'Especialização em câmbios automáticos e automatizados.' },
+  { icon: Droplets, t: 'Troca de Óleo', d: 'Troca com óleos adequados às especificações do seu veículo.' },
+  { icon: Settings2, t: 'Geometria das Rodas', d: 'Alinhamento 3D e balanceamento para mais estabilidade, segurança e precisão.' },
   { icon: ScanLine, t: 'Diagnóstico Computadorizado', d: 'Leitura eletrônica completa de módulos e sensores.' },
+  { icon: ClipboardCheck, t: 'Revisão Preventiva', d: 'Inspeção completa para antecipar necessidades e manter seu veículo seguro.' },
 ];
 
 const diferenciais = [
@@ -45,6 +51,13 @@ const diferenciais = [
   { icon: UserCheck, t: 'Atendimento personalizado', d: 'Cada cliente recebe uma abordagem individual, transparente e profissional.' },
   { icon: ShieldCheck, t: 'Garantia de 3 meses', d: 'Todos os serviços possuem garantia de 3 meses, assegurando qualidade e confiança.' },
   { icon: Eye, t: 'Transparência total', d: 'Explicamos cada serviço necessário antes da execução, sem surpresas no orçamento.' },
+];
+
+const formasPagamento = [
+  { icon: WalletCards, t: 'Débito', d: 'Pagamento no cartão' },
+  { icon: CreditCard, t: 'Crédito', d: 'Até 6x sem juros' },
+  { icon: QrCode, t: 'PIX', d: 'Prático e instantâneo' },
+  { icon: Banknote, t: 'Dinheiro', d: 'Pagamento à vista' },
 ];
 
 const destaquesSobre = [
@@ -57,23 +70,34 @@ const destaquesSobre = [
 ];
 
 const depoimentos = [
-  { texto: '[PLACEHOLDER] Insira aqui o depoimento real do cliente.', autor: '[PLACEHOLDER] Nome do cliente', veiculo: '[PLACEHOLDER] Modelo do veículo' },
-  { texto: '[PLACEHOLDER] Insira aqui o depoimento real do cliente.', autor: '[PLACEHOLDER] Nome do cliente', veiculo: '[PLACEHOLDER] Modelo do veículo' },
-  { texto: '[PLACEHOLDER] Insira aqui o depoimento real do cliente.', autor: '[PLACEHOLDER] Nome do cliente', veiculo: '[PLACEHOLDER] Modelo do veículo' },
+  {
+    texto: 'A melhor oficina da região.',
+    autor: 'Feedback real de cliente',
+    veiculo: 'Angelo Car Center',
+    imagem: '/media/feedback-cliente.jpeg',
+  },
 ];
 
 const galeria = [
-  { src: 'https://images.hostinger.com/6aeac844-05c0-42fd-b4c7-d81cb16bee9b.png', alt: 'Detalhe de motor de veículo premium em oficina', span: 'md:col-span-2 md:row-span-2' },
-  { src: 'https://images.hostinger.com/696a5dca-9ac4-4389-8583-54ccdea90628.png', alt: 'Mecânico realizando diagnóstico computadorizado', span: '' },
-  { src: 'https://images.hostinger.com/08c59eb6-6aa3-44ca-a2eb-4159879b7af2.png', alt: 'Sistema de freios de alta performance', span: '' },
-  { src: 'https://images.hostinger.com/897dea14-0ae9-4526-980d-c20a41ea0a65.png', alt: 'Veículo premium em manutenção na oficina', span: 'md:col-span-2' },
-  { src: 'https://images.hostinger.com/d83d299d-7117-48d0-9d8c-aba643377f21.png', alt: 'Mecânicos especializados trabalhando em veículo', span: '' },
-  { src: 'https://images.hostinger.com/7d8eee7e-cec5-432b-ba8c-725182f9a70e.png', alt: 'Equipamentos de diagnóstico automotivo', span: '' },
+  { src: '/media/oficina-ampla.jpeg', alt: 'Audi e BMW em atendimento dentro da oficina', span: 'md:col-span-2 md:row-span-2' },
+  { src: '/media/elevador-car.jpeg', alt: 'BMW em manutenção no elevador', span: '' },
+  { src: '/media/caminhonete-elevador.jpg', alt: 'Caminhonete e SUV em atendimento no elevador', span: '' },
+  { src: '/media/oficina-carros.jpeg', alt: 'Veículos Audi e BMW em manutenção', span: 'md:col-span-2' },
+  { src: '/media/entrada-angelo-car.jpeg', alt: 'Entrada da Angelo Car Center com veículos em atendimento', span: '' },
 ];
+
+const videos = [
+  { src: '/media/video-angelo-car.mp4', title: 'Rotina de atendimento na oficina' },
+  { src: '/media/video2-angelo-car.mp4', title: 'Estrutura e veículos em manutenção' },
+  { src: '/media/audi-a6-troca-de-rolamento-angelo-car.mp4', title: 'Atendimento técnico em Audi A6' },
+];
+
+const logoSrc = '/media/angelo-car-logo.png';
+const logoWithNameSrc = '/media/angelo-car-logo-name.png';
 
 const Btn = ({ href, children, variant = 'solid', className = '', ...rest }) => {
   const base =
-    'inline-flex items-center justify-center gap-2 min-h-[48px] px-7 text-[0.82rem] font-semibold uppercase tracking-[0.16em] transition-all duration-200 active:scale-[0.98]';
+    'inline-flex items-center justify-center gap-2 min-h-[48px] rounded-md px-7 text-[0.82rem] font-semibold uppercase tracking-[0.16em] transition-all duration-200 active:scale-[0.98]';
   const styles =
     variant === 'solid'
       ? 'bg-primary text-primary-foreground hover:bg-[hsl(0_72%_36%)] shadow-[0_10px_30px_-12px_hsl(0_72%_42%/0.7)]'
@@ -93,8 +117,76 @@ const Eyebrow = ({ children }) => (
 );
 
 export default function HomePage() {
+  const [showLoader, setShowLoader] = React.useState(true);
+  const [loaderExiting, setLoaderExiting] = React.useState(false);
+  const [playingVideo, setPlayingVideo] = React.useState(null);
+  const [startedVideos, setStartedVideos] = React.useState(() => new Set());
+  const videoRefs = React.useRef([]);
+  const videoVolumes = React.useRef([]);
+  const pauseTimers = React.useRef([]);
+  const fadingVideo = React.useRef(null);
+  const fadeToken = React.useRef(0);
+  const suppressPauseFade = React.useRef(false);
+
+  React.useEffect(() => {
+    const exitTimer = window.setTimeout(() => setLoaderExiting(true), 800);
+    const removeTimer = window.setTimeout(() => setShowLoader(false), 1400);
+
+    return () => {
+      window.clearTimeout(exitTimer);
+      window.clearTimeout(removeTimer);
+    };
+  }, []);
+
+  const fadeOutAndPause = (videoElement) => {
+    if (!videoElement || fadingVideo.current === videoElement) return;
+
+    fadingVideo.current = videoElement;
+    const currentFadeToken = ++fadeToken.current;
+    const originalVolume = videoElement.volume;
+    videoVolumes.current[videoRefs.current.indexOf(videoElement)] = originalVolume;
+    const fadeStartedAt = performance.now();
+    const fadeDuration = 260;
+
+    const finishFade = () => {
+      videoElement.volume = 0;
+      fadingVideo.current = null;
+    };
+
+    const fadeAudio = (now) => {
+      if (currentFadeToken !== fadeToken.current) return;
+      const progress = Math.min((now - fadeStartedAt) / fadeDuration, 1);
+      videoElement.volume = originalVolume * (1 - progress);
+      if (progress < 1) {
+        window.requestAnimationFrame(fadeAudio);
+      } else {
+        finishFade();
+      }
+    };
+
+    window.requestAnimationFrame(fadeAudio);
+  };
+
   return (
     <div className="min-h-screen bg-background text-foreground">
+      {showLoader && (
+        <div
+          className={`fixed inset-0 z-[100] flex items-center justify-center bg-[hsl(0_0%_4%)] transition-opacity duration-700 ease-out ${
+            loaderExiting ? 'pointer-events-none opacity-0' : 'opacity-100'
+          }`}
+          role="status"
+          aria-label="Carregando Angelo Car Center"
+        >
+          <div className="flex flex-col items-center gap-6 px-8">
+            <img
+              src={logoWithNameSrc}
+              alt="Angelo Car Center"
+              className="w-56 animate-pulse object-contain sm:w-64"
+            />
+            <span className="h-px w-16 bg-primary" />
+          </div>
+        </div>
+      )}
       <Helmet>
         <title>Angelo Car Center | Oficina Especializada em Carros Alemães — Vargem Grande Paulista</title>
         <meta
@@ -109,7 +201,7 @@ export default function HomePage() {
       <Seo
         title="Angelo Car Center | Especialistas em Carros Alemães"
         description="Oficina especializada em Volkswagen, Mercedes-Benz, BMW e Audi. Diagnóstico computadorizado, câmbio técnico, freios e suspensão. Garantia de 3 meses em todos os serviços."
-        image="https://horizons-cdn.hostinger.com/76ba7bb2-a01e-4d37-90d7-78ba84e7d717/fc6255d07b9569d8e055d66ecee5314d.jpg"
+        image="/media/oficina-ampla.jpeg"
         siteName="Angelo Car Center"
       />
 
@@ -118,12 +210,12 @@ export default function HomePage() {
         <div className="mx-auto flex h-16 max-w-[90rem] items-center justify-between px-5 sm:px-8">
           <a href="#topo" className="flex items-center gap-3">
             <img
-              src="https://horizons-cdn.hostinger.com/76ba7bb2-a01e-4d37-90d7-78ba84e7d717/e6cf14d3b69b1730b308ba510b7a38f6.jpg"
+              src={logoSrc}
               alt="Angelo Car Center logo"
-              className="h-10 w-auto"
+              className="h-9 w-auto"
             />
             <span className="font-display text-base font-bold uppercase tracking-[0.1em] hidden sm:block">
-              Angelo<span className="text-primary">Car</span>
+              Angelo <span className="text-primary">Car Center</span>
             </span>
           </a>
           <nav className="hidden items-center gap-8 text-[0.72rem] font-medium uppercase tracking-[0.22em] text-muted-foreground lg:flex">
@@ -142,9 +234,9 @@ export default function HomePage() {
       {/* HERO */}
       <section id="topo" className="relative flex min-h-[100dvh] items-end overflow-hidden">
         <img
-          src="https://images.hostinger.com/6109a4f0-4c3d-466e-993d-1c3ff84db381.png"
-          alt="Veículo premium em oficina especializada com iluminação escura e detalhes em vermelho"
-          className="absolute inset-0 h-full w-full object-cover"
+          src="/media/oficina-ampla.jpeg"
+          alt="Audi e BMW em atendimento dentro da oficina Angelo Car Center"
+          className="absolute inset-0 h-full w-full object-cover object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-black/40" />
         <div className="grain-overlay pointer-events-none absolute inset-0 opacity-60" />
@@ -155,7 +247,7 @@ export default function HomePage() {
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             className="max-w-3xl"
           >
-            <Eyebrow>Especialistas em Volkswagen, BMW, Mercedes-Benz e Audi</Eyebrow>
+            <Eyebrow>Todos os veículos, com especialização em Volkswagen, BMW, Mercedes-Benz e Audi</Eyebrow>
             <h1 className="font-display text-[2.6rem] font-bold uppercase leading-[0.95] sm:text-6xl lg:text-7xl">
               Excelência mecânica para carros que{' '}
               <span className="relative inline-block text-primary">
@@ -166,7 +258,7 @@ export default function HomePage() {
             </h1>
             <p className="mt-7 max-w-2xl text-base leading-relaxed text-white/70 sm:text-lg">
               A Angelo Car Center oferece diagnóstico preciso, atendimento especializado e garantia de 3 meses
-              em todos os serviços para o seu carro alemão.
+              em todos os serviços para veículos de todos os tipos, com especialização em carros alemães.
             </p>
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
               <Btn href={whatsappLink} target="_blank" rel="noopener noreferrer">Agendar avaliação</Btn>
@@ -199,19 +291,19 @@ export default function HomePage() {
           <Reveal>
             <div className="mb-6 flex items-center gap-5">
               <img
-                src="https://horizons-cdn.hostinger.com/76ba7bb2-a01e-4d37-90d7-78ba84e7d717/fc6255d07b9569d8e055d66ecee5314d.jpg"
-                alt="Angelo Car Center"
-                className="h-24 w-auto"
+                src="/media/oficina-carros.jpeg"
+                alt="Veículos em atendimento dentro da Angelo Car Center"
+                className="h-24 w-full max-w-sm object-cover object-center"
               />
             </div>
             <Eyebrow>Sobre a Angelo Car Center</Eyebrow>
             <h2 className="font-display text-[2rem] font-bold uppercase leading-[1.02] sm:text-[2.9rem]">
-              Seu carro alemão merece mais do que uma oficina. Merece <span className="text-primary">especialistas</span>.
+              Seu carro merece mais do que uma oficina. Merece <span className="text-primary">especialistas</span>.
             </h2>
             <p className="mt-7 max-w-xl text-[1.02rem] leading-relaxed text-muted-foreground">
-              A Angelo Car Center é especializada em veículos Volkswagen, Mercedes-Benz, BMW e Audi em
-              Vargem Grande Paulista. Trabalhamos com foco em precisão, transparência e excelência,
-              garantindo que cada serviço seja executado com o mais alto padrão técnico.
+              A Angelo Car Center atende veículos de todos os tipos em Vargem Grande Paulista, com
+              especialização em Volkswagen, Mercedes-Benz, BMW e Audi. Trabalhamos com foco em precisão,
+              transparência e excelência, garantindo que cada serviço seja executado com o mais alto padrão técnico.
             </p>
             <p className="font-display mt-9 border-l-2 border-primary pl-5 text-xl font-semibold uppercase tracking-wide">
               Garantia de 3 meses em todos os serviços.
@@ -239,7 +331,7 @@ export default function HomePage() {
           <Reveal>
             <Eyebrow>Serviços</Eyebrow>
             <h2 className="font-display max-w-2xl text-[2rem] font-bold uppercase leading-[1.02] sm:text-[2.8rem]">
-              Serviço técnico completo para carros alemães.
+              Serviço técnico completo para todos os tipos de veículos.
             </h2>
           </Reveal>
           <div className="mt-14 grid gap-px border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
@@ -279,16 +371,23 @@ export default function HomePage() {
 
         {/* FORMAS DE PAGAMENTO */}
         <Reveal delay={0.1}>
-          <div className="mt-16 border border-white/10 p-8">
-            <div className="flex items-center gap-3 mb-5">
-              <CreditCard className="h-5 w-5 text-primary" strokeWidth={1.6} />
-              <span className="font-display text-sm font-semibold uppercase tracking-[0.2em] text-primary">Formas de Pagamento</span>
+          <div className="mt-16 border border-white/10 bg-[hsl(0_0%_6%)] p-8 sm:p-10">
+            <div className="flex flex-col gap-2 border-b border-white/10 pb-6 sm:flex-row sm:items-center sm:justify-between">
+              <div className="flex items-center gap-3">
+                <CreditCard className="h-5 w-5 text-primary" strokeWidth={1.6} />
+                <span className="font-display text-sm font-semibold uppercase tracking-[0.2em] text-primary">Formas de Pagamento</span>
+              </div>
+              <span className="text-xs uppercase tracking-[0.12em] text-muted-foreground">Escolha a melhor opção para você</span>
             </div>
-            <div className="flex flex-wrap gap-3">
-              {['Cartão de Débito', 'Cartão de Crédito em até 6x sem juros', 'PIX', 'Dinheiro'].map((f) => (
-                <span key={f} className="border border-white/15 px-4 py-2 text-sm text-white/70 uppercase tracking-[0.1em]">
-                  {f}
-                </span>
+            <div className="mt-6 grid gap-px border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
+              {formasPagamento.map(({ icon: Icon, t, d }) => (
+                <div key={t} className="flex items-center gap-4 bg-[hsl(0_0%_8%)] p-5 transition-colors hover:bg-[hsl(0_0%_10%)]">
+                  <Icon className="h-6 w-6 shrink-0 text-primary" strokeWidth={1.6} />
+                  <div>
+                    <p className="font-display text-base font-semibold uppercase tracking-[0.08em] text-white">{t}</p>
+                    <p className="mt-1 text-xs text-muted-foreground">{d}</p>
+                  </div>
+                </div>
               ))}
             </div>
           </div>
@@ -298,9 +397,9 @@ export default function HomePage() {
       {/* IMPACTO */}
       <section className="relative min-h-[75vh] overflow-hidden">
         <img
-          src="https://images.hostinger.com/53815128-46e8-4a66-8a75-df596076eefe.png"
-          alt="Veículo premium sob luz noturna após manutenção especializada"
-          className="absolute inset-0 h-full w-full object-cover"
+          src="/media/caminhonete-elevador.jpg"
+          alt="Veículos em atendimento nos elevadores da Angelo Car Center"
+          className="absolute inset-0 h-full w-full object-cover object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black via-black/75 to-transparent" />
         <div className="relative mx-auto flex min-h-[75vh] max-w-[80rem] items-center px-5 py-24 sm:px-8">
@@ -310,7 +409,7 @@ export default function HomePage() {
                 Performance começa com <span className="text-primary">confiança</span>.
               </h2>
               <p className="mt-6 text-base leading-relaxed text-white/70 sm:text-lg">
-                Cuide hoje do seu carro alemão para dirigir com segurança, desempenho e tranquilidade amanhã.
+                Cuide hoje do seu veículo para dirigir com segurança, desempenho e tranquilidade amanhã.
               </p>
               <Btn href={whatsappLink} target="_blank" rel="noopener noreferrer" className="mt-9">
                 Agendar avaliação
@@ -329,18 +428,128 @@ export default function HomePage() {
               O que dizem nossos clientes
             </h2>
             <p className="mt-4 max-w-xl text-sm text-muted-foreground">
-              Espaço reservado para avaliações reais. Substitua os textos marcados como [PLACEHOLDER].
+              Experiências reais de quem confiou seus veículos à nossa equipe.
             </p>
           </Reveal>
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
+          <div className="mt-12 grid gap-6 lg:grid-cols-[0.82fr_1.18fr]">
             {depoimentos.map((d, i) => (
               <Reveal key={i} delay={i * 0.08}>
-                <figure className="flex h-full flex-col justify-between border border-white/10 border-t-primary bg-background p-7">
-                  <Quote className="h-6 w-6 text-primary/70" strokeWidth={1.5} />
-                  <blockquote className="mt-5 text-[0.95rem] leading-relaxed text-white/70">{d.texto}</blockquote>
-                  <figcaption className="mt-7 border-t border-white/10 pt-5">
-                    <p className="font-display text-sm font-semibold uppercase tracking-wide">{d.autor}</p>
-                    <p className="mt-1 text-xs uppercase tracking-[0.18em] text-muted-foreground">{d.veiculo}</p>
+                <figure className="group overflow-hidden border border-white/10 border-t-primary bg-background">
+                  <div className="relative aspect-[4/3] overflow-hidden bg-black">
+                    <img
+                      src={d.imagem}
+                      alt="Feedback real de cliente da Angelo Car Center"
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                    />
+                  </div>
+                  <figcaption className="flex gap-5 p-7">
+                    <Quote className="mt-1 h-6 w-6 shrink-0 text-primary/70" strokeWidth={1.5} />
+                    <div>
+                      <blockquote className="text-[1.05rem] leading-relaxed text-white/85">{d.texto}</blockquote>
+                      <p className="mt-5 font-display text-sm font-semibold uppercase tracking-wide">{d.autor}</p>
+                      <p className="mt-1 text-xs uppercase tracking-[0.18em] text-muted-foreground">{d.veiculo}</p>
+                    </div>
+                  </figcaption>
+                </figure>
+              </Reveal>
+            ))}
+            <Reveal delay={0.08}>
+              <div className="flex h-full flex-col justify-center border border-white/10 bg-background p-8 sm:p-10">
+                <Eyebrow>Confiança comprovada</Eyebrow>
+                <h3 className="font-display text-2xl font-bold uppercase leading-tight sm:text-3xl">
+                  Seu carro tratado por quem entende.
+                </h3>
+                <p className="mt-5 max-w-md text-sm leading-relaxed text-muted-foreground">
+                  Cada veículo que entra na Angelo Car Center recebe atenção técnica, cuidado e transparência do primeiro diagnóstico à entrega.
+                </p>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* VIDEOS REAIS */}
+      <section className="border-b border-white/10 bg-[hsl(0_0%_5%)]">
+        <div className="mx-auto max-w-[90rem] px-5 py-24 sm:px-8 sm:py-32">
+          <Reveal>
+            <Eyebrow>Por dentro da oficina</Eyebrow>
+            <h2 className="font-display max-w-2xl text-[2rem] font-bold uppercase leading-tight sm:text-[2.8rem]">
+              Atendimento real, estrutura real, <span className="text-primary">confiança real</span>.
+            </h2>
+          </Reveal>
+          <div className="mt-12 grid gap-4 md:grid-cols-3">
+            {videos.map((video, i) => (
+              <Reveal key={video.src} delay={i * 0.08}>
+                <figure className="relative overflow-hidden border border-white/10 bg-black">
+                  <div
+                    className={`pointer-events-none absolute inset-0 z-10 flex items-center justify-center bg-black transition-opacity duration-300 ${
+                      startedVideos.has(video.src) ? 'opacity-0' : 'opacity-100'
+                    }`}
+                  >
+                    <img
+                      src={logoSrc}
+                      alt="Angelo Car Center"
+                      className="w-24 object-contain opacity-90"
+                    />
+                  </div>
+                  <video
+                    ref={(element) => {
+                      videoRefs.current[i] = element;
+                    }}
+                    className="aspect-[9/14] w-full bg-black object-cover"
+                    controls
+                    preload="metadata"
+                    playsInline
+                    onPlay={(event) => {
+                      fadeToken.current += 1;
+                      fadingVideo.current = null;
+                      const videoIndex = videoRefs.current.indexOf(event.currentTarget);
+                      window.clearTimeout(pauseTimers.current[videoIndex]);
+                      if (videoVolumes.current[videoIndex] !== undefined) {
+                        event.currentTarget.volume = videoVolumes.current[videoIndex];
+                        videoVolumes.current[videoIndex] = undefined;
+                      }
+                      videoRefs.current.forEach((element) => {
+                        if (element && element !== event.currentTarget) {
+                          suppressPauseFade.current = true;
+                          element.pause();
+                          suppressPauseFade.current = false;
+                        }
+                      });
+                      setStartedVideos((current) => new Set(current).add(video.src));
+                      setPlayingVideo(video.src);
+                    }}
+                    onPause={(event) => {
+                      if (suppressPauseFade.current) {
+                        setPlayingVideo(null);
+                        return;
+                      }
+                      if (fadingVideo.current === event.currentTarget) {
+                        setPlayingVideo(null);
+                        return;
+                      }
+                      if (!event.currentTarget.ended) {
+                        setPlayingVideo(null);
+                        fadeOutAndPause(event.currentTarget);
+                        const videoIndex = videoRefs.current.indexOf(event.currentTarget);
+                        window.clearTimeout(pauseTimers.current[videoIndex]);
+                        pauseTimers.current[videoIndex] = window.setTimeout(() => {
+                          setStartedVideos((current) => {
+                            const next = new Set(current);
+                            next.delete(video.src);
+                            return next;
+                          });
+                        }, 5000);
+                      } else {
+                        setPlayingVideo(null);
+                      }
+                    }}
+                  >
+                    <source src={video.src} type="video/mp4" />
+                    Seu navegador não suporta vídeo HTML5.
+                  </video>
+                  <figcaption className="border-t border-white/10 p-5 font-display text-sm font-semibold uppercase tracking-[0.12em]">
+                    {video.title}
                   </figcaption>
                 </figure>
               </Reveal>
@@ -382,7 +591,7 @@ export default function HomePage() {
               Seu carro está em <span className="text-primary">boas mãos</span>.
             </h2>
             <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-              Agende uma avaliação com a Angelo Car Center e descubra um novo padrão de cuidado para o seu carro alemão.
+              Agende uma avaliação com a Angelo Car Center e descubra um novo padrão de cuidado para o seu veículo.
             </p>
             <Btn
               href={whatsappLink}
@@ -413,7 +622,8 @@ export default function HomePage() {
                 { icon: Mail, label: 'E-mail', value: contato.email, href: `mailto:${contato.email}` },
                 { icon: MapPin, label: 'Endereço', value: contato.endereco },
                 { icon: Clock, label: 'Horário de atendimento', value: contato.horario },
-                { icon: Instagram, label: 'Instagram / TikTok', value: contato.instagram, href: contato.instagramUrl },
+                { icon: Instagram, label: 'Instagram', value: contato.instagram, href: contato.instagramUrl },
+                { icon: Music2, label: 'TikTok', value: contato.instagram, href: contato.tiktokUrl },
               ].map((c) => (
                 <li key={c.label} className="flex items-start gap-4 py-5">
                   <c.icon className="mt-1 h-5 w-5 shrink-0 text-primary" strokeWidth={1.6} />
@@ -455,18 +665,13 @@ export default function HomePage() {
       {/* FOOTER */}
       <footer className="border-t border-white/10 bg-[hsl(0_0%_5%)]">
         <div className="mx-auto flex max-w-[90rem] flex-col gap-6 px-5 py-10 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between sm:px-8">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-5">
             <img
-              src="https://horizons-cdn.hostinger.com/76ba7bb2-a01e-4d37-90d7-78ba84e7d717/e6cf14d3b69b1730b308ba510b7a38f6.jpg"
+              src={logoWithNameSrc}
               alt="Angelo Car Center"
-              className="h-10 w-auto"
+              className="h-24 w-32 shrink-0 object-contain object-left"
             />
-            <div>
-              <p className="font-display text-base font-bold uppercase tracking-[0.14em] text-white">
-                Angelo<span className="text-primary">Car</span> Center
-              </p>
-              <p className="mt-1">Especialistas em carros alemães — Vargem Grande Paulista/SP</p>
-            </div>
+            <p className="max-w-sm">Todos os tipos de veículos, com especialização em alemães — Vargem Grande Paulista/SP</p>
           </div>
           <div className="flex flex-wrap gap-x-6 gap-y-2 uppercase tracking-[0.18em]">
             <a href="#servicos" className="hover:text-white">Serviços</a>
@@ -484,10 +689,10 @@ export default function HomePage() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Falar pelo WhatsApp"
-        className="fixed bottom-5 right-5 z-50 flex min-h-[56px] items-center gap-2 bg-primary px-5 text-[0.78rem] font-semibold uppercase tracking-[0.16em] text-primary-foreground shadow-[0_12px_34px_-10px_hsl(0_72%_42%/0.9)] transition-transform duration-200 active:scale-[0.97]"
+        title="Falar pelo WhatsApp"
+        className="fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-md bg-primary text-primary-foreground shadow-[0_12px_34px_-10px_hsl(0_72%_42%/0.9)] transition-transform duration-200 active:scale-[0.97]"
       >
         <MessageCircle className="h-5 w-5" strokeWidth={1.9} />
-        <span className="hidden sm:inline">WhatsApp</span>
       </a>
     </div>
   );

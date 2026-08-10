@@ -6,16 +6,14 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
-
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Segoe UI', sans-serif;
   overflow-x: clip;
   background: hsl(0 0% 4%);
 }
 
 .font-display {
-  font-family: 'Saira Condensed', 'Inter', sans-serif;
+  font-family: 'Arial Narrow', 'Segoe UI', sans-serif;
   letter-spacing: -0.01em;
 }
 
