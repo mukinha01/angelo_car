@@ -20,6 +20,8 @@ import {
   Instagram,
   Music2,
   MessageCircle,
+  Send,
+  X,
   Quote,
   ArrowUpRight,
   Mail,
@@ -31,7 +33,7 @@ import {
 } from 'lucide-react';
 import Reveal from '@/components/Reveal';
 import Seo from '@/components/Seo';
-import { contato, whatsappLink } from '@/data/siteConfig';
+import { contato, mensagemWhatsApp, whatsappLink } from '@/data/siteConfig';
 
 const marcas = ['Volkswagen', 'Mercedes-Benz', 'BMW', 'Audi'];
 
@@ -120,10 +122,10 @@ export default function HomePage() {
   const [showLoader, setShowLoader] = React.useState(true);
   const [loaderExiting, setLoaderExiting] = React.useState(false);
   const [playingVideo, setPlayingVideo] = React.useState(null);
-  const [startedVideos, setStartedVideos] = React.useState(() => new Set());
+  const [whatsappOpen, setWhatsappOpen] = React.useState(false);
+  const [whatsappMessage, setWhatsappMessage] = React.useState(mensagemWhatsApp);
   const videoRefs = React.useRef([]);
   const videoVolumes = React.useRef([]);
-  const pauseTimers = React.useRef([]);
   const fadingVideo = React.useRef(null);
   const fadeToken = React.useRef(0);
   const suppressPauseFade = React.useRef(false);
@@ -167,6 +169,13 @@ export default function HomePage() {
     window.requestAnimationFrame(fadeAudio);
   };
 
+  const handleWhatsAppSubmit = (event) => {
+    event.preventDefault();
+    const message = whatsappMessage.trim() || mensagemWhatsApp;
+    const chatUrl = `https://wa.me/${contato.whatsapp}?text=${encodeURIComponent(message)}`;
+    window.open(chatUrl, '_blank', 'noopener,noreferrer');
+  };
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       {showLoader && (
@@ -207,7 +216,7 @@ export default function HomePage() {
 
       {/* HEADER */}
       <header className="fixed inset-x-0 top-0 z-40 border-b border-white/10 bg-black/70 backdrop-blur-md">
-        <div className="mx-auto flex h-16 max-w-[90rem] items-center justify-between px-5 sm:px-8">
+        <div className="mx-auto grid h-16 max-w-[90rem] grid-cols-[1fr_auto_1fr] items-center px-5 sm:px-8">
           <a href="#topo" className="flex items-center gap-3">
             <img
               src={logoSrc}
@@ -218,14 +227,14 @@ export default function HomePage() {
               Angelo <span className="text-primary">Car Center</span>
             </span>
           </a>
-          <nav className="hidden items-center gap-8 text-[0.72rem] font-medium uppercase tracking-[0.22em] text-muted-foreground lg:flex">
+          <nav className="hidden items-center gap-8 justify-self-center text-[0.72rem] font-medium uppercase tracking-[0.22em] text-muted-foreground lg:flex">
             <a href="#sobre" className="transition-colors hover:text-foreground">Sobre</a>
             <a href="#servicos" className="transition-colors hover:text-foreground">Serviços</a>
             <a href="#diferenciais" className="transition-colors hover:text-foreground">Diferenciais</a>
             <a href="#galeria" className="transition-colors hover:text-foreground">Galeria</a>
             <a href="#contato" className="transition-colors hover:text-foreground">Contato</a>
           </nav>
-          <Btn href={whatsappLink} target="_blank" rel="noopener noreferrer" className="hidden px-5 sm:inline-flex">
+          <Btn href={whatsappLink} target="_blank" rel="noopener noreferrer" className="hidden justify-self-end px-5 sm:inline-flex">
             <MessageCircle className="h-4 w-4" strokeWidth={1.8} /> WhatsApp
           </Btn>
         </div>
@@ -481,30 +490,19 @@ export default function HomePage() {
             {videos.map((video, i) => (
               <Reveal key={video.src} delay={i * 0.08}>
                 <figure className="relative overflow-hidden border border-white/10 bg-black">
-                  <div
-                    className={`pointer-events-none absolute inset-0 z-10 flex items-center justify-center bg-black transition-opacity duration-300 ${
-                      startedVideos.has(video.src) ? 'opacity-0' : 'opacity-100'
-                    }`}
-                  >
-                    <img
-                      src={logoSrc}
-                      alt="Angelo Car Center"
-                      className="w-24 object-contain opacity-90"
-                    />
-                  </div>
                   <video
                     ref={(element) => {
                       videoRefs.current[i] = element;
                     }}
                     className="aspect-[9/14] w-full bg-black object-cover"
                     controls
-                    preload="metadata"
+                    preload="auto"
                     playsInline
                     onPlay={(event) => {
                       fadeToken.current += 1;
                       fadingVideo.current = null;
                       const videoIndex = videoRefs.current.indexOf(event.currentTarget);
-                      window.clearTimeout(pauseTimers.current[videoIndex]);
+                      setPlayingVideo(video.src);
                       if (videoVolumes.current[videoIndex] !== undefined) {
                         event.currentTarget.volume = videoVolumes.current[videoIndex];
                         videoVolumes.current[videoIndex] = undefined;
@@ -516,38 +514,34 @@ export default function HomePage() {
                           suppressPauseFade.current = false;
                         }
                       });
-                      setStartedVideos((current) => new Set(current).add(video.src));
-                      setPlayingVideo(video.src);
                     }}
                     onPause={(event) => {
+                      setPlayingVideo((currentVideo) => (currentVideo === video.src ? null : currentVideo));
                       if (suppressPauseFade.current) {
-                        setPlayingVideo(null);
                         return;
                       }
                       if (fadingVideo.current === event.currentTarget) {
-                        setPlayingVideo(null);
                         return;
                       }
                       if (!event.currentTarget.ended) {
-                        setPlayingVideo(null);
                         fadeOutAndPause(event.currentTarget);
-                        const videoIndex = videoRefs.current.indexOf(event.currentTarget);
-                        window.clearTimeout(pauseTimers.current[videoIndex]);
-                        pauseTimers.current[videoIndex] = window.setTimeout(() => {
-                          setStartedVideos((current) => {
-                            const next = new Set(current);
-                            next.delete(video.src);
-                            return next;
-                          });
-                        }, 5000);
-                      } else {
-                        setPlayingVideo(null);
                       }
                     }}
+                    onEnded={() => setPlayingVideo(null)}
                   >
                     <source src={video.src} type="video/mp4" />
                     Seu navegador não suporta vídeo HTML5.
                   </video>
+                  {playingVideo !== video.src && (
+                    <button
+                      type="button"
+                      aria-label={`Reproduzir ${video.title}`}
+                      onClick={() => videoRefs.current[i]?.play()}
+                      className="absolute left-1/2 top-[42%] z-10 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/50 bg-black/55 text-white shadow-[0_8px_24px_-8px_black] backdrop-blur-sm transition-transform duration-200 hover:scale-105 hover:bg-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-black"
+                    >
+                      <span className="ml-1 text-2xl leading-none">▶</span>
+                    </button>
+                  )}
                   <figcaption className="border-t border-white/10 p-5 font-display text-sm font-semibold uppercase tracking-[0.12em]">
                     {video.title}
                   </figcaption>
@@ -684,16 +678,60 @@ export default function HomePage() {
       </footer>
 
       {/* WHATSAPP FIXO */}
-      <a
-        href={whatsappLink}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Falar pelo WhatsApp"
-        title="Falar pelo WhatsApp"
+      {whatsappOpen && (
+        <section
+          className="fixed bottom-24 right-5 z-50 w-[min(calc(100vw-2.5rem),22rem)] overflow-hidden rounded-md border border-white/15 bg-[hsl(0_0%_8%)] shadow-[0_20px_60px_-20px_black]"
+          aria-label="Conversa pelo WhatsApp"
+        >
+          <div className="flex items-center justify-between border-b border-white/10 bg-primary px-5 py-4 text-primary-foreground">
+            <div>
+              <p className="font-display text-sm font-bold uppercase tracking-[0.12em]">Angelo Car Center</p>
+              <p className="mt-1 text-xs text-white/75">Fale com a nossa equipe</p>
+            </div>
+            <button
+              type="button"
+              onClick={() => setWhatsappOpen(false)}
+              aria-label="Fechar conversa"
+              className="rounded p-1 text-white/80 transition-colors hover:bg-black/15 hover:text-white"
+            >
+              <X className="h-5 w-5" strokeWidth={1.8} />
+            </button>
+          </div>
+          <div className="space-y-4 p-5">
+            <div className="max-w-[90%] rounded-md bg-white/10 px-4 py-3 text-sm leading-relaxed text-white/80">
+              Olá! Como podemos ajudar com o seu veículo?
+            </div>
+            <form onSubmit={handleWhatsAppSubmit} className="space-y-3">
+              <label htmlFor="whatsapp-message" className="sr-only">Sua mensagem</label>
+              <textarea
+                id="whatsapp-message"
+                value={whatsappMessage}
+                onChange={(event) => setWhatsappMessage(event.target.value)}
+                rows={3}
+                className="w-full resize-none rounded-md border border-white/15 bg-black/20 px-3 py-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-primary"
+                placeholder="Escreva sua mensagem..."
+              />
+              <button
+                type="submit"
+                className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-md bg-primary px-4 text-xs font-semibold uppercase tracking-[0.14em] text-primary-foreground transition-colors hover:bg-[hsl(0_72%_36%)]"
+              >
+                Continuar no WhatsApp
+                <Send className="h-4 w-4" strokeWidth={1.8} />
+              </button>
+            </form>
+          </div>
+        </section>
+      )}
+      <button
+        type="button"
+        onClick={() => setWhatsappOpen((isOpen) => !isOpen)}
+        aria-expanded={whatsappOpen}
+        aria-label={whatsappOpen ? 'Fechar conversa do WhatsApp' : 'Falar pelo WhatsApp'}
+        title={whatsappOpen ? 'Fechar conversa' : 'Falar pelo WhatsApp'}
         className="fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-md bg-primary text-primary-foreground shadow-[0_12px_34px_-10px_hsl(0_72%_42%/0.9)] transition-transform duration-200 active:scale-[0.97]"
       >
-        <MessageCircle className="h-5 w-5" strokeWidth={1.9} />
-      </a>
+        {whatsappOpen ? <X className="h-5 w-5" strokeWidth={1.9} /> : <MessageCircle className="h-5 w-5" strokeWidth={1.9} />}
+      </button>
     </div>
   );
 }
