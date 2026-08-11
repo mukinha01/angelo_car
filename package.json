@@ -7,6 +7,8 @@
   ],
   "scripts": {
     "build": "npm run build --prefix apps/web",
+    "vercel-build": "npm run build --prefix apps/web",
+    "start": "npm run start --prefix apps/web",
     "dev": "npm run dev --prefix apps/web"
   }
 }
