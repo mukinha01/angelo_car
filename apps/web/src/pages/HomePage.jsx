@@ -125,7 +125,7 @@ const historiaImages = [
 ];
 
 const logoSrc = mediaPath('angelo-car-logo.png');
-const logoWithNameSrc = mediaPath('angelo-car-logo-name.png');
+const logoWithNameSrc = mediaPath('angelo-car-logo.png');
 
 const Btn = ({ href, children, variant = 'solid', className = '', ...rest }) => {
   const base =
@@ -228,7 +228,7 @@ export default function HomePage() {
         </div>
       )}
       <Helmet>
-        <title>Angelo Car Center | Oficina Especializada em Carros Alemães — Vargem Grande Paulista</title>
+        <title>Angelo Car Center | Oficina Especializada em Vargem Grande Paulista</title>
         <meta
           name="description"
           content="Angelo Car Center — especializada em Volkswagen, Mercedes-Benz, BMW e Audi em Vargem Grande Paulista. Injeção eletrônica, câmbio técnico, freios, suspensão e diagnóstico computadorizado. Garantia de 3 meses."
@@ -631,7 +631,7 @@ export default function HomePage() {
                       type="button"
                       aria-label={`Reproduzir ${video.title}`}
                       onClick={() => videoRefs.current[i]?.play()}
-                      className={`absolute left-1/2 top-[42%] z-10 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/50 bg-black/55 text-white shadow-[0_8px_24px_-8px_black] backdrop-blur-sm transition-transform duration-200 hover:scale-105 hover:bg-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-black ${i >= 3 && !showAllVideos ? 'pointer-events-none' : ''}`}
+                      className={`absolute left-1/2 top-[42%] z-10 hidden h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/50 bg-black/55 text-white shadow-[0_8px_24px_-8px_black] backdrop-blur-sm transition-transform duration-200 hover:scale-105 hover:bg-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-black sm:flex ${i >= 3 && !showAllVideos ? 'pointer-events-none' : ''}`}
                     >
                       <span className="ml-1 text-2xl leading-none">▶</span>
                     </button>
