@@ -1,75 +1,32 @@
 # Angelo Car Center
 
-Site estático em React + Vite para a Angelo Car Center.
+Bem-vindo ao site institucional da Angelo Car Center. Este site foi criado para apresentar a oficina, seus serviços, história e diferencial com foco em clientes que buscam atendimento especializado para carros premium.
 
-## Estrutura do projeto
+## O que o site mostra
 
-- `apps/package.json` - scripts principais do monorepo
-- `apps/web/` - aplicação React + Vite
-- `dist/apps/web/` - build de produção gerado após rodar `npm run build`
+- Apresentação da oficina Angelo Car Center
+- Serviços oferecidos, como injeção eletrônica, freios, suspensão, geometric, mecânica geral e diagnóstico computadorizado
+- Diferenciais de atendimento, garantia, transparência e confiança
+- Galeria visual com fotos reais da oficina, dos veículos atendidos e da estrutura
+- Vídeos reais que mostram o trabalho em ação
+- Seção de história com a trajetória da oficina desde 2012
+- Contato via WhatsApp, telefone, e-mail e localização no mapa
 
-## Instalação
+## Por que este site é importante
 
-No diretório raiz do projeto:
+Este site ajuda a transmitir credibilidade para clientes que procuram uma oficina especializada em carros alemães como Audi, Volkswagen, BMW e Mercedes-Benz. Com uma navegação clara e elementos visuais fortes, ele reforça a imagem de uma empresa profissional, moderna e confiável.
 
-```bash
-npm install
-```
+## Como usar com o cliente
 
-## Desenvolvimento local
+- Mostre o site para o cliente como uma vitrine digital da oficina
+- Enfatize os diferenciais e a especialização em veículos premium
+- Use a seção de contato para facilitar agendamento pelo WhatsApp ou telefone
+- Aproveite a seção de história para contar a trajetória do Angelo e o compromisso com qualidade
 
-```bash
-npm run dev --prefix apps/web
-```
+## Informações adicionais
 
-Ou, se estiver usando o monorepo diretamente:
+- A parte visual já está pronta com imagens de ambiente, equipe e veículos
+- A página de história está atualizada com a trajetória da Angelo desde 2012
+- O site pode ser hospedado em qualquer serviço de hospedagem estática ou integrado a um domínio próprio
 
-```bash
-npm run dev
-```
-
-A aplicação ficará disponível em `http://localhost:3000`.
-
-## Build de produção
-
-```bash
-npm run build --prefix apps/web
-```
-
-O conteúdo final será gerado em:
-
-```text
-dist/apps/web
-```
-
-## Hospedagem recomendada
-
-Para o cliente acessar de casa, os melhores serviços são:
-
-- **Netlify**
-- **Vercel**
-- **Cloudflare Pages**
-
-### Deploy rápido
-
-1. Gere o build:
-
-   ```bash
-   npm run build --prefix apps/web
-   ```
-
-2. Publique a pasta `dist/apps/web` no serviço escolhido.
-
-### Configuração para Netlify / Vercel
-
-- Build command: `npm run build --prefix apps/web`
-- Publish directory: `dist/apps/web`
-
-## Observações
-
-- O projeto é um site estático sem backend.
-- O Vite está configurado para usar `base: '/'`, o que facilita a hospedagem em domínio raiz.
-
-## Se quiser usar GitHub Pages
-
-Se optar por GitHub Pages e deployment via branch `gh-pages`, será necessário alterar `apps/web/vite.config.js` para `base: '/angelo_car/'` ou para o nome do repositório.
+> Este README é pensado para comunicar o valor do produto ao cliente, não para detalhar configuração técnica.

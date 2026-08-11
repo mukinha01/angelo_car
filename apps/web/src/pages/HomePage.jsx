@@ -373,7 +373,7 @@ export default function HomePage() {
               <img
                 src={mediaPath('logo-angelo-car-completa.png')}
                 alt="Logo completo Angelo Car Center"
-                className="h-20 w-full max-w-xs object-contain object-left"
+                className="w-full max-w-xs max-h-20 object-contain object-left"
               />
             </div>
             <Eyebrow>História da Angelo Car</Eyebrow>
