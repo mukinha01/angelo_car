@@ -1,32 +1,40 @@
 # Angelo Car Center
 
-Bem-vindo ao site institucional da Angelo Car Center. Este site foi criado para apresentar a oficina, seus serviços, história e diferencial com foco em clientes que buscam atendimento especializado para carros premium.
+Este é o sistema digital criado especialmente para a Angelo Car Center, uma oficina especializada em carros premium como Audi, BMW, Mercedes-Benz e Volkswagen. O site foi desenvolvido como uma vitrine estratégica para o cliente, combinando design autoral, conteúdo de marca e funcionalidades práticas para gerar confiança e agendamento rápido.
 
-## O que o site mostra
+## O que foi entregue
 
-- Apresentação da oficina Angelo Car Center
-- Serviços oferecidos, como injeção eletrônica, freios, suspensão, geometric, mecânica geral e diagnóstico computadorizado
-- Diferenciais de atendimento, garantia, transparência e confiança
-- Galeria visual com fotos reais da oficina, dos veículos atendidos e da estrutura
-- Vídeos reais que mostram o trabalho em ação
-- Seção de história com a trajetória da oficina desde 2012
-- Contato via WhatsApp, telefone, e-mail e localização no mapa
+- Sistema de apresentação institucional com identidade visual alinhada à marca
+- Páginas e seções para serviços, diferenciais, história da oficina, galeria e vídeos reais
+- Integração direta com WhatsApp, telefone e mapa de localização para facilitar o contato
+- Layout responsivo e otimizado para navegação em desktop e celular
+- Uso de imagens reais da oficina e dos veículos que transmitem profissionalismo
 
-## Por que este site é importante
+## Minhas habilidades aplicadas
 
-Este site ajuda a transmitir credibilidade para clientes que procuram uma oficina especializada em carros alemães como Audi, Volkswagen, BMW e Mercedes-Benz. Com uma navegação clara e elementos visuais fortes, ele reforça a imagem de uma empresa profissional, moderna e confiável.
+- Desenvolvimento front-end em React + Vite com estrutura moderna e performance otimizada
+- Criação de interface visual consistente usando Tailwind CSS e componentes reutilizáveis
+- Construção de uma experiência de usuário clara, com navegação ágil e foco em conversão
+- Implementação de conteúdo estratégico (história, serviços, depoimentos, contato)
+- Ajustes de marca, tipografia e layout para destacar a oficina como referência local
 
-## Como usar com o cliente
+## Por que este sistema faz diferença para o cliente
 
-- Mostre o site para o cliente como uma vitrine digital da oficina
-- Enfatize os diferenciais e a especialização em veículos premium
-- Use a seção de contato para facilitar agendamento pelo WhatsApp ou telefone
-- Aproveite a seção de história para contar a trajetória do Angelo e o compromisso com qualidade
+- Transforma a presença digital da Angelo Car Center em um ativo profissional
+- Ajuda a converter visitantes em agendamentos por WhatsApp e telefone
+- Reforça credibilidade ao mostrar equipe, estrutura, especialização e depoimentos
+- Permite que o cliente mostre sua história e diferencial de serviço com impacto visual
 
-## Informações adicionais
+## Como apresentar ao cliente
 
-- A parte visual já está pronta com imagens de ambiente, equipe e veículos
-- A página de história está atualizada com a trajetória da Angelo desde 2012
-- O site pode ser hospedado em qualquer serviço de hospedagem estática ou integrado a um domínio próprio
+- Destaque que este é um sistema criado sob medida para a marca Angelo Car Center
+- Mostre como as seções do site contam a história, explicam os serviços e facilitam o contato
+- Explique que a interface foi desenvolvida para ser limpa, rápida e confiável
+- Informe que a solução é fácil de hospedar como um site estático e pode ser publicada em domínio próprio
 
-> Este README é pensado para comunicar o valor do produto ao cliente, não para detalhar configuração técnica.
+## Qualidade do produto
+
+- Código organizado e baseado em componentes React
+- Design responsivo e pronto para uso em celulares e desktops
+- Atendimento visual e texto adequados ao público de veículos premium
+- Estrutura pronta para futura expansão ou adaptação com mais funcionalidades
