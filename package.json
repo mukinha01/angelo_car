@@ -1,0 +1,12 @@
+{
+  "name": "angelo_car",
+  "version": "0.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "build": "npm run build --prefix apps/web",
+    "dev": "npm run dev --prefix apps/web"
+  }
+}
