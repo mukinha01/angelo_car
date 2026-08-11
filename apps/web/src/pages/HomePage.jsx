@@ -105,6 +105,25 @@ const videos = [
   { src: mediaPath('video-troca-oleo.mp4'), title: 'Serviço de troca de óleo' },
 ];
 
+const historiaImages = [
+  {
+    src: mediaPath('WhatsApp Image 2026-08-10 at 16.50.49.jpeg'),
+    alt: 'Foto do Angelo em atendimento na oficina',
+  },
+  {
+    src: mediaPath('WhatsApp Image 2026-08-10 at 16.50.49 (1).jpeg'),
+    alt: 'Foto do Angelo e da equipe durante o trabalho',
+  },
+  {
+    src: mediaPath('entrada-angelo-car.jpeg'),
+    alt: 'Entrada da Angelo Car Center com veículos em atendimento',
+  },
+  {
+    src: mediaPath('fachada-angelo-car.jpeg'),
+    alt: 'Fachada da Angelo Car Center durante o dia',
+  },
+];
+
 const logoSrc = mediaPath('angelo-car-logo.png');
 const logoWithNameSrc = mediaPath('angelo-car-logo-name.png');
 
@@ -343,6 +362,68 @@ export default function HomePage() {
               ))}
             </div>
           </Reveal>
+        </div>
+      </section>
+
+      {/* HISTÓRIA */}
+      <section id="historia" className="mx-auto max-w-[90rem] px-5 py-24 sm:px-8 sm:py-32">
+        <div className="grid gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20">
+          <Reveal>
+            <div className="mb-6 flex items-center gap-5">
+              <img
+                src={mediaPath('logo-angelo-car-completa.png')}
+                alt="Logo completo Angelo Car Center"
+                className="h-20 w-full max-w-xs object-contain object-left"
+              />
+            </div>
+            <Eyebrow>História da Angelo Car</Eyebrow>
+            <h2 className="font-display text-[2rem] font-bold uppercase leading-[1.02] sm:text-[2.9rem]">
+              Da garagem aos carros premium: uma trajetória movida por <span className="text-primary">trabalho</span> e <span className="text-primary">confiança</span>.
+            </h2>
+            <p className="mt-7 max-w-xl text-[1.02rem] leading-relaxed text-muted-foreground">
+              Tudo começou em 2012, com um sonho, muito trabalho e a vontade de construir algo que fosse além de uma simples oficina.
+            </p>
+            <p className="mt-6 max-w-xl text-[1.02rem] leading-relaxed text-muted-foreground">
+              Comecei em um espaço pequeno e com uma estrutura bastante simples. Naquele momento, eu ainda não imaginava até onde esse projeto poderia chegar. Mas desde o início, uma coisa sempre esteve presente: o compromisso de fazer um trabalho bem feito e entregar aos meus clientes confiança, qualidade e segurança.
+            </p>
+            <p className="mt-6 max-w-xl text-[1.02rem] leading-relaxed text-muted-foreground">
+              Com o passar dos anos, a oficina cresceu e novos desafios surgiram. Vieram as mudanças de endereço, espaços maiores e uma estrutura cada vez mais completa, até chegarmos ao nosso atual galpão, onde conseguimos reunir tecnologia, organização e equipamentos de alto nível.
+            </p>
+            <div className="mt-10 rounded-[2rem] border border-white/10 bg-[hsl(0_0%_10%)] p-8 shadow-[0_30px_90px_-40px_rgba(0,0,0,0.8)]">
+              <p className="text-lg font-semibold text-white/90">
+                Investimos constantemente em novas máquinas, ferramentas e diagnósticos para acompanhar a evolução do mercado e cuidar dos veículos mais modernos e exigentes.
+              </p>
+            </div>
+            <p className="mt-10 max-w-xl text-[1.02rem] leading-relaxed text-muted-foreground">
+              Foi nesse processo que construímos nossa especialização em veículos premium, com forte experiência nas principais marcas alemãs, como Audi, Volkswagen, BMW e Mercedes-Benz.
+            </p>
+            <p className="mt-6 max-w-xl text-[1.02rem] leading-relaxed text-muted-foreground">
+              Hoje, quando olho para tudo o que construí desde 2012, vejo muito mais do que uma oficina. Vejo anos de trabalho, aprendizado, evolução e, principalmente, a confiança de cada cliente que fez parte dessa trajetória.
+            </p>
+            <p className="mt-6 max-w-xl text-[1.02rem] leading-relaxed text-muted-foreground">
+              O espaço mudou. A tecnologia mudou. Os carros mudaram.
+            </p>
+            <p className="mt-6 max-w-xl text-[1.02rem] leading-relaxed text-muted-foreground">
+              Mas uma coisa permanece a mesma desde o primeiro dia: a vontade de entregar sempre o melhor.
+            </p>
+            <p className="mt-6 text-sm uppercase tracking-[0.2em] text-muted-foreground">
+              Essa é a nossa história. E ela continua sendo escrita todos os dias.
+            </p>
+          </Reveal>
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            {historiaImages.map((image) => (
+              <Reveal key={image.src}>
+                <div className="overflow-hidden rounded-[2rem] bg-[hsl(0_0%_8%)] shadow-[0_25px_80px_-35px_rgba(0,0,0,0.8)] transition-transform duration-300 hover:-translate-y-1">
+                  <img
+                    src={image.src}
+                    alt={image.alt}
+                    className="h-64 w-full object-cover object-center"
+                  />
+                </div>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
