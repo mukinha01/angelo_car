@@ -8,6 +8,7 @@ export const contato = {
   endereco: 'R. Ambrosina Maria de Jesus, 169 — Jardim Bela Vista, Vargem Grande Paulista - SP, CEP 06730-470',
   horario: 'Segunda a Sábado, 08h00 às 18h00',
   instagram: '@angelocar.premium',
+  tiktok: '@angelocar.premium',
   instagramUrl: 'https://instagram.com/angelocar.premium',
   tiktokUrl: 'https://tiktok.com/@angelocar.premium',
   mapaUrl:
