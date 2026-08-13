@@ -566,8 +566,8 @@ export default function HomePage() {
                 href={`#${id}`}
                 onClick={() => setActiveSection(id)}
                 className={`transition-colors hover:text-foreground ${activeSection === id
-                    ? 'text-primary'
-                    : ''
+                  ? 'text-primary'
+                  : ''
                   }`}
                 aria-current={
                   activeSection === id
@@ -629,11 +629,19 @@ export default function HomePage() {
                 <a
                   key={id}
                   href={`#${id}`}
-                  onClick={closeMobileMenu}
+                  onClick={() => {
+                    setActiveSection(id);
+                    closeMobileMenu();
+                  }}
                   className={`flex min-h-12 items-center justify-between border-b border-white/10 px-2 text-sm font-semibold uppercase tracking-[0.13em] transition-colors hover:text-primary ${activeSection === id
-                    ? 'text-primary'
-                    : 'text-white/80'
+                      ? 'text-primary'
+                      : 'text-white/80'
                     }`}
+                  aria-current={
+                    activeSection === id
+                      ? 'page'
+                      : undefined
+                  }
                 >
                   {label}
 
