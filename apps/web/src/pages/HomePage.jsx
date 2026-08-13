@@ -564,9 +564,10 @@ export default function HomePage() {
               <a
                 key={id}
                 href={`#${id}`}
+                onClick={() => setActiveSection(id)}
                 className={`transition-colors hover:text-foreground ${activeSection === id
-                  ? 'text-primary'
-                  : ''
+                    ? 'text-primary'
+                    : ''
                   }`}
                 aria-current={
                   activeSection === id
