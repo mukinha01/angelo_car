@@ -25,13 +25,6 @@ Este é o sistema digital criado especialmente para a Angelo Car Center, uma ofi
 - Reforça credibilidade ao mostrar equipe, estrutura, especialização e depoimentos
 - Permite que o cliente mostre sua história e diferencial de serviço com impacto visual
 
-## Como apresentar ao cliente
-
-- Destaque que este é um sistema criado sob medida para a marca Angelo Car Center
-- Mostre como as seções do site contam a história, explicam os serviços e facilitam o contato
-- Explique que a interface foi desenvolvida para ser limpa, rápida e confiável
-- Informe que a solução é fácil de hospedar como um site estático e pode ser publicada em domínio próprio
-
 ## Qualidade do produto
 
 - Código organizado e baseado em componentes React
